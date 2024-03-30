@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: "API"
+  version: "1.0.0"
+tags:
+  - name: Test
+    description: testApiの作成
+paths:
+  /test:
+    get:
+      operationId: getTest
+      summary: TestDtoを取得する
+      tags:
+        - Test
+      responses:
+        "200":
+          description: OK
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: "#/components/schemas/TestDto"
+components:
+  schemas:
+    TestDto:
+      type: object
+      required:
+        - uuid
+      properties:
+        uuid:
+          type: string
+          description: UUID
+          example: a123456787890123456787890123456787890z
