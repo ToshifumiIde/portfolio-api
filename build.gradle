@@ -39,62 +39,42 @@ tasks.named('test') {
 tasks.openApiGenerate {
     def name = System.getenv('YAML')
     def gen = System.getenv('GEN')
+    generatorName = ""
 
+    switch (gen) {
+        case "spring":
+            generatorName = "spring"
+            configFile = "$rootDir/oas/config.json".toString()
+            inputSpec = "$rootDir/oas/api/${name}.yml".toString()
+            outputDir = "$rootDir/src/main/restapi".toString()
+            apiPackage = "ti.api.portfolioapi.restapi.${name}"
+            modelPackage = "ti.api.portfolioapi.restapi.${name}.model"
 
-    generatorName = "spring"
-    configFile = "$rootDir/oas/config.json".toString()
-    inputSpec = "$rootDir/oas/api/${name}.yml".toString()
-    outputDir = "$rootDir/src/main/restapi".toString()
-    apiPackage = "ti.api.portfolioapi.restapi.${name}"
-    modelPackage = "ti.api.portfolioapi.restapi.${name}.model"
+            generateApiTests = false
+            generateModelTests =false
 
-    generateApiTests = false
-    generateModelTests =false
+            generateModelDocumentation = false
+            generateApiDocumentation = false
 
-    generateModelDocumentation = false
-    generateApiDocumentation = false
-
-    globalProperties = [
-            modelDocs: 'false'
-    ]
-//    switch (gen) {
-//        case "spring":
-//            packageName = "server.restapi.${name}"
-//            generatorName = "spring"
-//            inputSpec = "$rootDir/oas/api/${name}.yml".toString()
-//            outputDir = "$rootDir/src/main/restApi".toString()
-//            apiPackage = packageName
-//            modelPackage = packageName + ".model"
-//            configOptions = [
-//                    interfaceOnly: "true",
-//                    useSpringBoot3: "true"
-//            ]
-//            break;
-//        case "ts":
-//            packageName = "front.restapi.${name}"
-////            generatorName = "typescript"
-//            inputSpec = "$rootDir/oas/api/${name}.yml".toString()
-//            outputDir = "$rootDir/ts".toString()
-//            apiPackage = packageName
-//            modelPackage = packageName + ".model"
-//            break;
-//        default:
-//            if (gen != null) {
-//                throw new GradleScriptException("invalidGeneratorName:" + gen)
-//            }
-//            break;
-//    }
+            globalProperties = [
+                    modelDocs: 'false'
+            ]
+            break;
+        case "ts":
+            packageName = "front.restapi.${name}"
+            generatorName = "typescript"
+            inputSpec = "$rootDir/oas/api/${name}.yml".toString()
+            outputDir = "$rootDir/ts".toString()
+            apiPackage = packageName
+            modelPackage = packageName + ".model"
+            break;
+        default:
+            if (gen != null) {
+                throw new GradleScriptException("invalidGeneratorName:" + gen)
+            }
+            break;
+    }
 }
-
-//openApiValidate {
-//    def name = System.getenv("YAML")
-//    inputSpec = "$rootDir/oas/api/${name}.yml"
-//}
-
-// コンパイルの依存関係を追加
-//compileJava {
-//    dependsOn tasks.openApiGenerate
-//}
 
 // デフォルトの規約に沿わないディレクトリ構成を取るため設定変更
 sourceSets {
