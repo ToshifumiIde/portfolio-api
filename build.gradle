@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.2.4'
     id 'io.spring.dependency-management' version '1.1.4'
     id "org.openapi.generator" version "7.2.0"
+    id "com.arenagod.gradle.MybatisGenerator" version "1.4"
 }
 
 group = 'ti.api'
@@ -23,6 +24,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.openapitools:jackson-databind-nullable:0.1.0'
@@ -51,7 +53,7 @@ tasks.openApiGenerate {
             modelPackage = "ti.api.portfolioapi.restapi.${name}.model"
 
             generateApiTests = false
-            generateModelTests =false
+            generateModelTests = false
 
             generateModelDocumentation = false
             generateApiDocumentation = false
@@ -75,6 +77,12 @@ tasks.openApiGenerate {
             break;
     }
 }
+
+mybatisGenerator {
+    verbose = true
+    configFile = "$rootDir/src/main/resources/generatorConfig.xml"
+}
+
 
 // デフォルトの規約に沿わないディレクトリ構成を取るため設定変更
 sourceSets {
