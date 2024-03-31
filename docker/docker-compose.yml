@@ -27,8 +27,7 @@ services:
     volumes:
       - portfolio-api-db:/var/lib/mysql
       - ./conf:/etc/mysql/conf.d
-    # 初期値を入れたい場合、以下でマウント
-    #     - :/docker-entrypoint-initdb.d
+      - ./initdb.d:/docker-entrypoint-initdb.d
     networks:
       - backend
 
