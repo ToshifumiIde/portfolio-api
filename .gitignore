@@ -33,5 +33,14 @@ out/
 /nbdist/
 /.nb-gradle/
 
+### OpenAPIGenerate ###
+src/main/restapi/.openapi-generator/*
+src/main/restapi/.openapi-generator-ignore
+src/main/restapi/pom.xml
+src/main/restapi/README.md
+
 ### VS Code ###
 .vscode/
+
+### env ###
+*.env
