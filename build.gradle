@@ -99,7 +99,7 @@ mybatisGenerator {
     def connectionUrl = "jdbc:mysql://localhost:$port/ti_db"
     def userId = "user_name"
     def password = "user_password"
-    def targetProject = "$rootDir/src/main/java/"
+    def targetProject = "$rootDir/src/main"
 
     // 設定ファイル情報
     configFile = "$rootDir/src/main/resources/generatorConfig.xml"
