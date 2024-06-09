@@ -14,6 +14,7 @@ services:
       - ../:/app
     depends_on:
       - api-db
+      - api-redis
   api-db:
     image: mysql:8.3.0
     container_name: api-db
@@ -30,8 +31,22 @@ services:
       - ./initdb.d:/docker-entrypoint-initdb.d
     networks:
       - backend
+  api-redis:
+    image: redis:7.2
+    container_name: api-redis
+    command:
+      - redis-server
+      - /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-volume:/data
+      - ./conf/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - backend
 
 networks:
   backend:
 volumes:
   portfolio-api-db:
+  redis-volume:
