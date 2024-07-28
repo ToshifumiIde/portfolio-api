@@ -36,5 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
+### openapi-generator ###
+*.openapi-generator
+*.openapi-generator-ignore
+
 ### .env ###
 *.env
