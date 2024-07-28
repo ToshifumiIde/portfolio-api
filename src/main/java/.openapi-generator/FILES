@@ -1,0 +1,9 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+portfolio_api/portfolio_api/controller/test/ApiUtil.java
+portfolio_api/portfolio_api/controller/test/TestsApi.java
+portfolio_api/portfolio_api/controller/test/model/ErrorResponse.java
+portfolio_api/portfolio_api/controller/test/model/TestDto.java
+portfolio_api/portfolio_api/controller/test/model/TestRegistrationDto.java
+portfolio_api/portfolio_api/controller/test/model/TestRow.java

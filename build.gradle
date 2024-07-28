@@ -1,38 +1,82 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.3.2'
-	id 'io.spring.dependency-management' version '1.1.6'
+    id 'java'
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id "org.openapi.generator" version "7.2.0"
 }
 
 group = 'portfolio-api'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'io.swagger.core.v3:swagger-annotations:2.2.8'
+    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.openapitools:jackson-databind-nullable:0.1.0'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
+}
+
+tasks.openApiGenerate {
+    def name = System.getenv('YAML')
+    def gen = System.getenv('GEN')
+    generatorName = ""
+
+    switch (gen) {
+        case "spring":
+            generatorName = "spring"
+            configFile = "$rootDir/oas/config.json".toString()
+            inputSpec = "$rootDir/oas/api/${name}.yml".toString()
+            outputDir = "$rootDir/src/main/java".toString()
+            apiPackage = "portfolio_api.portfolio_api.controller.${name}"
+            modelPackage = "portfolio_api.portfolio_api.controller.${name}.model"
+
+            generateApiTests = false
+            generateModelTests = false
+
+            generateModelDocumentation = false
+            generateApiDocumentation = false
+
+            globalProperties = [
+                    modelDocs: 'false'
+            ]
+            break;
+        case "ts":
+            packageName = "front.restapi.${name}"
+            generatorName = "typescript"
+            inputSpec = "$rootDir/oas/api/${name}.yml".toString()
+            outputDir = "$rootDir/ts".toString()
+            apiPackage = packageName
+            modelPackage = packageName + ".model"
+            break;
+        default:
+            if (gen != null) {
+                throw new GradleScriptException("invalidGeneratorName:" + gen)
+            }
+            break;
+    }
 }
