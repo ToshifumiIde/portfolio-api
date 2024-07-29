@@ -1,9 +1,22 @@
 CREATE TABLE IF NOT EXISTS test(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  uuid varchar(32) NOT NULL,
+  uuid VARCHAR(32) NOT NULL,
   title VARCHAR(255) NOT NULL,
   description varchar(1000) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS company(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  uuid VARCHAR(32) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  tel VARCHAR(11) NOT NULL
+);
+
+
+
 INSERT INTO test (id,uuid,title,description) VALUES
 (1,'00000000000000000000000000000001','test1','description1');
+
+INSERT INTO company (id,uuid,name,address,tel) VALUES
+(1,'10000000000000000000000000000001','TestCompany','Tokyo' , '0312345678');
