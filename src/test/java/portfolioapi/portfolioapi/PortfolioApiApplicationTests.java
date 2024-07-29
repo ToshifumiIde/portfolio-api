@@ -1,4 +1,4 @@
-package portfolio_api.portfolio_api;
+package portfolioapi.portfolioapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

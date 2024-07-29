@@ -1,4 +1,4 @@
-package portfolio_api.portfolio_api.controller.test.model;
+package portfolioapi.portfolioapi.controller.test.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,11 +1,11 @@
-package portfolio_api.portfolio_api.controller.test;
+package portfolioapi.portfolioapi.controller.test;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import portfolio_api.portfolio_api.controller.test.model.TestDto;
-import portfolio_api.portfolio_api.controller.test.model.TestRegistrationDto;
-import portfolio_api.portfolio_api.controller.test.model.TestRow;
+import portfolioapi.portfolioapi.controller.test.model.TestDto;
+import portfolioapi.portfolioapi.controller.test.model.TestRegistrationDto;
+import portfolioapi.portfolioapi.controller.test.model.TestRow;
 
 
 @RestController

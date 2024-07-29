@@ -3,7 +3,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-package portfolio_api.portfolio_api.controller.test;
+package portfolioapi.portfolioapi.controller.test;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,10 +18,10 @@ import jakarta.validation.constraints.Size;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import portfolio_api.portfolio_api.controller.test.model.ErrorResponse;
-import portfolio_api.portfolio_api.controller.test.model.TestDto;
-import portfolio_api.portfolio_api.controller.test.model.TestRegistrationDto;
-import portfolio_api.portfolio_api.controller.test.model.TestRow;
+import portfolioapi.portfolioapi.controller.test.model.ErrorResponse;
+import portfolioapi.portfolioapi.controller.test.model.TestDto;
+import portfolioapi.portfolioapi.controller.test.model.TestRegistrationDto;
+import portfolioapi.portfolioapi.controller.test.model.TestRow;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 @Validated

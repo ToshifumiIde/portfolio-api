@@ -1,37 +1,46 @@
-package portfolio_api.portfolio_api.controller.test.model;
+package portfolioapi.portfolioapi.controller.test.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Generated;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
 /**
- * TestRegistrationDto
+ * TestDto
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class TestRegistrationDto {
+public class TestDto {
+
+  private String uuid;
 
   private String title;
 
   private String description;
 
-  public TestRegistrationDto() {
-    super();
+  public TestDto uuid(String uuid) {
+    this.uuid = uuid;
+    return this;
   }
 
   /**
-   * Constructor with only required parameters
+   * UUID
+   *
+   * @return uuid
    */
-  public TestRegistrationDto(String title, String description) {
-    this.title = title;
-    this.description = description;
+
+  @Schema(name = "uuid", example = "a123456787890123456787890123456787890z", description = "UUID", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("uuid")
+  public String getUuid() {
+    return uuid;
   }
 
-  public TestRegistrationDto title(String title) {
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
+  }
+
+  public TestDto title(String title) {
     this.title = title;
     return this;
   }
@@ -41,9 +50,8 @@ public class TestRegistrationDto {
    *
    * @return title
    */
-  @NotNull
-  @Size(min = 1, max = 255)
-  @Schema(name = "title", example = "タイトルです", description = "タイトル", requiredMode = Schema.RequiredMode.REQUIRED)
+
+  @Schema(name = "title", example = "タイトル", description = "タイトル", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("title")
   public String getTitle() {
     return title;
@@ -53,7 +61,7 @@ public class TestRegistrationDto {
     this.title = title;
   }
 
-  public TestRegistrationDto description(String description) {
+  public TestDto description(String description) {
     this.description = description;
     return this;
   }
@@ -63,9 +71,8 @@ public class TestRegistrationDto {
    *
    * @return description
    */
-  @NotNull
-  @Size(min = 1, max = 1000)
-  @Schema(name = "description", example = "説明です", description = "説明", requiredMode = Schema.RequiredMode.REQUIRED)
+
+  @Schema(name = "description", example = "説明文", description = "説明", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
   public String getDescription() {
     return description;
@@ -83,20 +90,22 @@ public class TestRegistrationDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TestRegistrationDto testRegistrationDto = (TestRegistrationDto) o;
-    return Objects.equals(this.title, testRegistrationDto.title) &&
-      Objects.equals(this.description, testRegistrationDto.description);
+    TestDto testDto = (TestDto) o;
+    return Objects.equals(this.uuid, testDto.uuid) &&
+      Objects.equals(this.title, testDto.title) &&
+      Objects.equals(this.description, testDto.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, description);
+    return Objects.hash(uuid, title, description);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TestRegistrationDto {\n");
+    sb.append("class TestDto {\n");
+    sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");

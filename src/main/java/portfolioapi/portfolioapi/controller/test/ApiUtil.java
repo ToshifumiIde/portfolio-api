@@ -1,4 +1,4 @@
-package portfolio_api.portfolio_api.controller.test;
+package portfolioapi.portfolioapi.controller.test;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.context.request.NativeWebRequest;

@@ -1,4 +1,4 @@
-package portfolio_api.portfolio_api;
+package portfolioapi.portfolioapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
