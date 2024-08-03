@@ -33,6 +33,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -53,8 +54,8 @@ tasks.openApiGenerate {
             configFile = "$rootDir/oas/config.json".toString()
             inputSpec = "$rootDir/oas/api/${name}.yml".toString()
             outputDir = "$rootDir/src/main/java".toString()
-            apiPackage = "portfolio_api.portfolio_api.controller.${name}"
-            modelPackage = "portfolio_api.portfolio_api.controller.${name}.model"
+            apiPackage = "portfolioapi.portfolioapi.controller.${name}"
+            modelPackage = "portfolioapi.portfolioapi.controller.${name}.model"
 
             generateApiTests = false
             generateModelTests = false
@@ -86,8 +87,8 @@ mybatisGenerator {
     verbose = true
     def driverClass = "com.mysql.cj.jdbc.Driver"
     def driverFile = "$rootDir/tool/mysql-connector-j-8.4.0.jar"
-    def port = 8000
-    def connectionUrl = "jdbc:mysql://172.0.0.1:$port/ti_db"
+    def port = 3306
+    def connectionUrl = "jdbc:mysql://localhost:$port/ti_db"
     def userId = "user_name"
     def password = "user_password"
     def targetProject = "$rootDir/src/main"
