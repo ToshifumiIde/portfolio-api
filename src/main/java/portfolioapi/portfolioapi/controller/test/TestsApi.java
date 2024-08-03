@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Generated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -106,7 +107,7 @@ public interface TestsApi {
   )
   ResponseEntity<TestDto> getTest(
     @Parameter(name = "uuid", description = "テストUUID", required = true, in = ParameterIn.PATH) @PathVariable("uuid") String uuid
-  );
+  ) throws NotFoundException;
 
 
   /**
