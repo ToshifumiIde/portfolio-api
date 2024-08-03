@@ -61,5 +61,6 @@
         <!-- 生成対象のテーブル -->
 <!--        <table schema="ti_db" tableName="test"/>-->
         <table schema="ti_db" tableName="company"/>
+        <table schema="ti_db" tableName="test"/>
     </context>
 </generatorConfiguration>
