@@ -1,0 +1,13 @@
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          description: ステータスコード
+          type: integer
+          example: 404
+        detail:
+          description: エラー詳細
+          type: string
+          example: Resource not found

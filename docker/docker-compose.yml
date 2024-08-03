@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  api-web:
+    container_name: api-web
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "3000:8080"
+      - "3010:5005"
+    networks:
+      - backend
+    volumes:
+      - ../:/app
+    depends_on:
+      - api-db
+      - api-redis
+  api-db:
+    image: mysql:8.4
+    container_name: api-db
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - portfolio-api-db:/var/lib/mysql
+      - ./conf:/etc/mysql/conf.d
+      - ./initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - backend
+  api-redis:
+    image: redis:7.2
+    container_name: api-redis
+    command:
+      - redis-server
+      - /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-volume:/data
+      - ./conf/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - backend
+
+networks:
+  backend:
+volumes:
+  portfolio-api-db:
+  redis-volume:
