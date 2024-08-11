@@ -9,9 +9,10 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 /**
- * TestRegistrationDto
+ * テスト登録用Dto
  */
 
+@Schema(name = "TestRegistrationDto", description = "テスト登録用Dto")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
 public class TestRegistrationDto {
 
@@ -84,8 +85,7 @@ public class TestRegistrationDto {
       return false;
     }
     TestRegistrationDto testRegistrationDto = (TestRegistrationDto) o;
-    return Objects.equals(this.title, testRegistrationDto.title) &&
-      Objects.equals(this.description, testRegistrationDto.description);
+    return Objects.equals(this.title, testRegistrationDto.title) && Objects.equals(this.description, testRegistrationDto.description);
   }
 
   @Override

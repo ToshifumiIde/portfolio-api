@@ -19,7 +19,7 @@ public class TestRow {
   private Integer total;
 
   @Valid
-  private List<@Valid TestDto> dataList;
+  private List<@Valid TestReadDto> dataList;
 
   public TestRow total(Integer total) {
     this.total = total;
@@ -42,12 +42,12 @@ public class TestRow {
     this.total = total;
   }
 
-  public TestRow dataList(List<@Valid TestDto> dataList) {
+  public TestRow dataList(List<@Valid TestReadDto> dataList) {
     this.dataList = dataList;
     return this;
   }
 
-  public TestRow addDataListItem(TestDto dataListItem) {
+  public TestRow addDataListItem(TestReadDto dataListItem) {
     if (this.dataList == null) {
       this.dataList = new ArrayList<>();
     }
@@ -63,11 +63,11 @@ public class TestRow {
   @Valid
   @Schema(name = "dataList", description = "Test", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("dataList")
-  public List<@Valid TestDto> getDataList() {
+  public List<@Valid TestReadDto> getDataList() {
     return dataList;
   }
 
-  public void setDataList(List<@Valid TestDto> dataList) {
+  public void setDataList(List<@Valid TestReadDto> dataList) {
     this.dataList = dataList;
   }
 
