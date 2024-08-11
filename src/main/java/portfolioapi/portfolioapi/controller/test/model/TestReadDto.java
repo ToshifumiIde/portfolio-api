@@ -7,11 +7,12 @@ import jakarta.annotation.Generated;
 import java.util.Objects;
 
 /**
- * TestDto
+ * テスト読み込み用Dto
  */
 
+@Schema(name = "TestReadDto", description = "テスト読み込み用Dto")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
-public class TestDto {
+public class TestReadDto {
 
   private String uuid;
 
@@ -19,7 +20,7 @@ public class TestDto {
 
   private String description;
 
-  public TestDto uuid(String uuid) {
+  public TestReadDto uuid(String uuid) {
     this.uuid = uuid;
     return this;
   }
@@ -40,7 +41,7 @@ public class TestDto {
     this.uuid = uuid;
   }
 
-  public TestDto title(String title) {
+  public TestReadDto title(String title) {
     this.title = title;
     return this;
   }
@@ -61,7 +62,7 @@ public class TestDto {
     this.title = title;
   }
 
-  public TestDto description(String description) {
+  public TestReadDto description(String description) {
     this.description = description;
     return this;
   }
@@ -90,10 +91,10 @@ public class TestDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TestDto testDto = (TestDto) o;
-    return Objects.equals(this.uuid, testDto.uuid) &&
-      Objects.equals(this.title, testDto.title) &&
-      Objects.equals(this.description, testDto.description);
+    TestReadDto testReadDto = (TestReadDto) o;
+    return Objects.equals(this.uuid, testReadDto.uuid) &&
+      Objects.equals(this.title, testReadDto.title) &&
+      Objects.equals(this.description, testReadDto.description);
   }
 
   @Override
@@ -104,7 +105,7 @@ public class TestDto {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TestDto {\n");
+    sb.append("class TestReadDto {\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");

@@ -4,6 +4,12 @@
     <select id="getByUuid" resultMap="testResultMap">
         select * from test where uuid = #{uuid}
     </select>
+
+    <insert id="createTest">
+        insert into test (uuid ,title , description)
+        values(#{uuid} , #{title} , #{description})
+    </insert>
+
     <resultMap id="testResultMap" type="portfolioapi.portfolioapi.model.Test">
         <id property="id" column="id"/>
         <result property="uuid" column="uuid"/>

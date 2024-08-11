@@ -15,12 +15,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Generated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
-import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import portfolioapi.portfolioapi.controller.test.model.ErrorResponse;
-import portfolioapi.portfolioapi.controller.test.model.TestDto;
+import portfolioapi.portfolioapi.controller.test.model.TestReadDto;
 import portfolioapi.portfolioapi.controller.test.model.TestRegistrationDto;
 import portfolioapi.portfolioapi.controller.test.model.TestRow;
 
@@ -42,12 +45,15 @@ public interface TestsApi {
     tags = {"Test"},
     responses = {
       @ApiResponse(responseCode = "200", description = "OK"),
-      @ApiResponse(responseCode = "400", description = "Bad Request")
+      @ApiResponse(responseCode = "400", description = "Bad Request", content = {
+        @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+      })
     }
   )
   @RequestMapping(
     method = RequestMethod.POST,
     value = "/tests",
+    produces = {"application/json"},
     consumes = {"application/json"}
   )
   ResponseEntity<Void> createTest(
@@ -93,7 +99,7 @@ public interface TestsApi {
     tags = {"Test"},
     responses = {
       @ApiResponse(responseCode = "200", description = "OK", content = {
-        @Content(mediaType = "application/json", schema = @Schema(implementation = TestDto.class))
+        @Content(mediaType = "application/json", schema = @Schema(implementation = TestReadDto.class))
       }),
       @ApiResponse(responseCode = "404", description = "Not Found", content = {
         @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
@@ -105,9 +111,9 @@ public interface TestsApi {
     value = "/tests/{uuid}",
     produces = {"application/json"}
   )
-  ResponseEntity<TestDto> getTest(
+  ResponseEntity<TestReadDto> getTest(
     @Parameter(name = "uuid", description = "テストUUID", required = true, in = ParameterIn.PATH) @PathVariable("uuid") String uuid
-  ) throws NotFoundException;
+  );
 
 
   /**
