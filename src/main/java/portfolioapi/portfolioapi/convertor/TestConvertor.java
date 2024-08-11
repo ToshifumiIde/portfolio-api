@@ -15,7 +15,7 @@ public class TestConvertor {
    * @param test テストEntity
    * @return testDto テストDto
    */
-  public TestReadDto entityToDto(Test test) {
+  public static TestReadDto entityToReadDto(Test test) {
     TestReadDto testDto = new TestReadDto();
     testDto.setUuid(test.getUuid());
     testDto.setTitle(test.getTitle());
@@ -29,7 +29,7 @@ public class TestConvertor {
    * @param testRegistrationDto テストDto
    * @return testEntity テストEntity
    */
-  public Test registrationDtoToEntity(TestRegistrationDto testRegistrationDto) {
+  public static Test registrationDtoToEntity(TestRegistrationDto testRegistrationDto) {
     Test testEntity = new Test();
     testEntity.setUuid(UuidGenerate.generate());
     testEntity.setTitle(testRegistrationDto.getTitle());
