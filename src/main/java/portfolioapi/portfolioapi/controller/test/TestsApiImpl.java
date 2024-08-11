@@ -1,13 +1,13 @@
 package portfolioapi.portfolioapi.controller.test;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import portfolioapi.portfolioapi.controller.test.model.TestDto;
+import portfolioapi.portfolioapi.controller.test.model.TestReadDto;
 import portfolioapi.portfolioapi.controller.test.model.TestRegistrationDto;
 import portfolioapi.portfolioapi.controller.test.model.TestRow;
+import portfolioapi.portfolioapi.convertor.TestConvertor;
 import portfolioapi.portfolioapi.model.Test;
 import portfolioapi.portfolioapi.service.TestService;
 
@@ -20,6 +20,10 @@ public class TestsApiImpl implements TestsApi {
 
   @Override
   public ResponseEntity<Void> createTest(TestRegistrationDto testRegistrationDto) {
+
+    Test entity = TestConvertor.registrationDtoToEntity(testRegistrationDto);
+    testService.createTest(entity);
+
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
@@ -29,14 +33,12 @@ public class TestsApiImpl implements TestsApi {
   }
 
   @Override
-  public ResponseEntity<TestDto> getTest(String uuid) throws NotFoundException {
+  public ResponseEntity<TestReadDto> getTest(String uuid) {
 
     Test entity = testService.getByUuid(uuid);
 
-    TestDto dto = new TestDto();
-    dto.setUuid(entity.getUuid());
-    dto.setTitle(entity.getTitle());
-    dto.setDescription(entity.getDescription());
+    TestReadDto dto = TestConvertor.entityToReadDto(entity);
+
 
     return new ResponseEntity<>(dto, HttpStatus.OK);
   }
