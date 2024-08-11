@@ -49,6 +49,10 @@ paths:
           description: OK
         "400":
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "common/common.yml#/components/schemas/ErrorResponse"
   /tests/{uuid}:
     get:
       operationId: getTest
@@ -69,7 +73,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TestDto"
+                $ref: "#/components/schemas/TestReadDto"
         "404":
           description: Not Found
           content:
@@ -130,8 +134,9 @@ components:
           type: array
           description: Test
           items:
-            $ref: "#/components/schemas/TestDto"
-    TestDto:
+            $ref: "#/components/schemas/TestReadDto"
+    TestReadDto:
+      description: テスト読み込み用Dto
       type: object
       properties:
         uuid:
@@ -147,6 +152,7 @@ components:
           description: 説明
           example: 説明文
     TestRegistrationDto:
+      description: テスト登録用Dto
       type: object
       required:
         - title
