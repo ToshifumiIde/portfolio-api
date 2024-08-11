@@ -14,11 +14,11 @@ public class TestService {
 
   private final TestRepository testRepository;
 
-  public Test getByUuid(String uuid) throws NotFoundException {
+  public Test getByUuid(String uuid) {
     Test result = testRepository.getByUuid(uuid);
 
     if (Objects.isNull(result)) {
-      throw new NotFoundException("className: " + Test.class.getSimpleName() + " uuid: " + uuid);
+        throw new RuntimeException("not found uuid: " + uuid);
     }
 
     return result;
