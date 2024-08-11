@@ -6,7 +6,7 @@ services:
       dockerfile: ./docker/Dockerfile
     ports:
       - "3000:8080"
-      - "3010:5005"
+      - "5005:5005"
     networks:
       - backend
     volumes:

@@ -42,6 +42,10 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+bootRun {
+    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
@@ -91,7 +95,7 @@ tasks.test {
     jvmArgs "-Xshare:off";
 }
 
-tasks.withType(Test){
+tasks.withType(Test) {
     // Dynamic loading のWARNINGエラーを消去する
     jvmArgs "-XX:+EnableDynamicAgentLoading";
 }
