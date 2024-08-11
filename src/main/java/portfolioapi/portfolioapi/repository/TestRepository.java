@@ -6,4 +6,6 @@ import portfolioapi.portfolioapi.model.Test;
 @Repository
 public interface TestRepository {
   Test getByUuid(String uuid);
+
+  int createTest(Test test);
 }
