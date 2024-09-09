@@ -65,6 +65,8 @@ paths:
           in: path
           required: true
           schema:
+            minLength: 32
+            maxLength: 32
             type: string
             example: a123456789012345678901234567890z
       responses:

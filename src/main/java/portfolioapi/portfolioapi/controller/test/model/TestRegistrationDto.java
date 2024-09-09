@@ -1,12 +1,18 @@
 package portfolioapi.portfolioapi.controller.test.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.annotation.Generated;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
+import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import jakarta.annotation.Generated;
 
 /**
  * テスト登録用Dto
@@ -39,11 +45,9 @@ public class TestRegistrationDto {
 
   /**
    * タイトル
-   *
    * @return title
-   */
-  @NotNull
-  @Size(min = 1, max = 255)
+  */
+  @NotNull @Size(min = 1, max = 255) 
   @Schema(name = "title", example = "タイトルです", description = "タイトル", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("title")
   public String getTitle() {
@@ -61,11 +65,9 @@ public class TestRegistrationDto {
 
   /**
    * 説明
-   *
    * @return description
-   */
-  @NotNull
-  @Size(min = 1, max = 1000)
+  */
+  @NotNull @Size(min = 1, max = 1000) 
   @Schema(name = "description", example = "説明です", description = "説明", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("description")
   public String getDescription() {
@@ -85,7 +87,8 @@ public class TestRegistrationDto {
       return false;
     }
     TestRegistrationDto testRegistrationDto = (TestRegistrationDto) o;
-    return Objects.equals(this.title, testRegistrationDto.title) && Objects.equals(this.description, testRegistrationDto.description);
+    return Objects.equals(this.title, testRegistrationDto.title) &&
+        Objects.equals(this.description, testRegistrationDto.description);
   }
 
   @Override

@@ -7,7 +7,11 @@ components:
           description: ステータスコード
           type: integer
           example: 404
+        title:
+          description: エラー説明
+          type: string
+          example: Resource not found
         detail:
           description: エラー詳細
           type: string
-          example: Resource not found
+          example: Target UUID is not found
