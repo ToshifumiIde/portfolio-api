@@ -8,20 +8,21 @@ public class BusinessException extends RuntimeException {
   private String title;
   private String detail;
 
-  public BusinessException (HttpStatus httpStatus, String description, String detail) {
+  public BusinessException(HttpStatus httpStatus, String description, String detail) {
     this.httpStatus = httpStatus;
     this.title = description;
     this.detail = detail;
   }
 
-  public HttpStatus getHttpStatus(){
+  public HttpStatus getHttpStatus() {
     return httpStatus;
   }
 
-  public String getTitle(){
+  public String getTitle() {
     return title;
   }
-  public String getDetail(){
+
+  public String getDetail() {
     return detail;
   }
 }

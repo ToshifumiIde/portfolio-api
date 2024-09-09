@@ -2,7 +2,6 @@ package portfolioapi.portfolioapi.controller.common;
 
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -23,7 +22,7 @@ public class CustomExceptionHandler {
   }
 
   @ExceptionHandler(ConstraintViolationException.class)
-  public ResponseEntity<ErrorResponse> handleConstraintViolationException(ConstraintViolationException e){
+  public ResponseEntity<ErrorResponse> handleConstraintViolationException(ConstraintViolationException e) {
     ErrorResponse response = new ErrorResponse();
     response.setStatusCode(HttpStatus.BAD_REQUEST.value());
     response.setTitle(ErrorHandling.VALIDATION_ERROR.toString());
