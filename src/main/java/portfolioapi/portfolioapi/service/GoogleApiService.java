@@ -10,7 +10,10 @@ import com.google.auth.oauth2.GoogleCredentials;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import portfolioapi.portfolioapi.exception.BusinessException;
+import portfolioapi.portfolioapi.exception.ErrorHandling;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -61,6 +64,7 @@ public class GoogleApiService {
       ).execute();
     } catch (IOException e) {
       log.error("google connection error");
+      throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorHandling.CONNECTION_ERROR.toString(), "Google Access Token Get Error");
     }
     return response.getAccessToken();
   }
