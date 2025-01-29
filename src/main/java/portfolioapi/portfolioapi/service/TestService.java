@@ -1,9 +1,11 @@
 package portfolioapi.portfolioapi.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.javassist.NotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import portfolioapi.portfolioapi.exception.BusinessException;
+import portfolioapi.portfolioapi.exception.ErrorHandling;
 import portfolioapi.portfolioapi.model.Test;
 import portfolioapi.portfolioapi.repository.TestRepository;
 
@@ -24,7 +26,7 @@ public class TestService {
   public void createTest(Test test) {
     int result = testRepository.createTest(test);
     if (!Objects.equals(result, 1)) {
-      throw new RuntimeException("create fail");
+      throw new BusinessException(HttpStatus.BAD_REQUEST, ErrorHandling.RESOURCE_NOT_CREATED.toString(), "");
     }
   }
 
@@ -37,7 +39,7 @@ public class TestService {
   public Test getByUuid(String uuid) {
     Test result = testRepository.getByUuid(uuid);
     if (Objects.isNull(result)) {
-      throw new RuntimeException("not found uuid: " + uuid);
+      throw new BusinessException(HttpStatus.NOT_FOUND, ErrorHandling.RESOURCE_NOT_FOUND.toString(), "not found uuid: " + uuid);
     }
     return result;
   }
