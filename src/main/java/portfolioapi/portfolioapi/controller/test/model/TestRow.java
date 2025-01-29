@@ -1,13 +1,22 @@
 package portfolioapi.portfolioapi.controller.test.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.annotation.Generated;
-import jakarta.validation.Valid;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import portfolioapi.portfolioapi.controller.test.model.TestReadDto;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import jakarta.annotation.Generated;
 
 /**
  * TestRow
@@ -28,10 +37,9 @@ public class TestRow {
 
   /**
    * 総数
-   *
    * @return total
-   */
-
+  */
+  
   @Schema(name = "total", example = "10", description = "総数", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("total")
   public Integer getTotal() {
@@ -57,10 +65,9 @@ public class TestRow {
 
   /**
    * Test
-   *
    * @return dataList
-   */
-  @Valid
+  */
+  @Valid 
   @Schema(name = "dataList", description = "Test", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("dataList")
   public List<@Valid TestReadDto> getDataList() {
@@ -81,7 +88,7 @@ public class TestRow {
     }
     TestRow testRow = (TestRow) o;
     return Objects.equals(this.total, testRow.total) &&
-      Objects.equals(this.dataList, testRow.dataList);
+        Objects.equals(this.dataList, testRow.dataList);
   }
 
   @Override

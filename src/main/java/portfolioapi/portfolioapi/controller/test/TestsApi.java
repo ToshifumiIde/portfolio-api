@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import portfolioapi.portfolioapi.controller.test.model.ErrorResponse;
+import portfolioapi.portfolioapi.controller.common.model.ErrorResponse;
 import portfolioapi.portfolioapi.controller.test.model.TestReadDto;
 import portfolioapi.portfolioapi.controller.test.model.TestRegistrationDto;
 import portfolioapi.portfolioapi.controller.test.model.TestRow;
@@ -112,7 +112,7 @@ public interface TestsApi {
     produces = {"application/json"}
   )
   ResponseEntity<TestReadDto> getTest(
-    @Parameter(name = "uuid", description = "テストUUID", required = true, in = ParameterIn.PATH) @PathVariable("uuid") String uuid
+    @Size(min = 32, max = 32) @Parameter(name = "uuid", description = "テストUUID", required = true, in = ParameterIn.PATH) @PathVariable("uuid") String uuid
   );
 
 

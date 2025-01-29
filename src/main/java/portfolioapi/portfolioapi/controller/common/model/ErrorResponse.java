@@ -1,4 +1,4 @@
-package portfolioapi.portfolioapi.controller.test.model;
+package portfolioapi.portfolioapi.controller.common.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -14,6 +14,8 @@ import java.util.Objects;
 public class ErrorResponse {
 
   private Integer statusCode;
+
+  private String title;
 
   private String detail;
 
@@ -38,6 +40,27 @@ public class ErrorResponse {
     this.statusCode = statusCode;
   }
 
+  public ErrorResponse title(String title) {
+    this.title = title;
+    return this;
+  }
+
+  /**
+   * エラー説明
+   *
+   * @return title
+   */
+
+  @Schema(name = "title", example = "Resource not found", description = "エラー説明", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("title")
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
   public ErrorResponse detail(String detail) {
     this.detail = detail;
     return this;
@@ -49,7 +72,7 @@ public class ErrorResponse {
    * @return detail
    */
 
-  @Schema(name = "detail", example = "Resource not found", description = "エラー詳細", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "detail", example = "Target UUID is not found", description = "エラー詳細", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("detail")
   public String getDetail() {
     return detail;
@@ -69,12 +92,13 @@ public class ErrorResponse {
     }
     ErrorResponse errorResponse = (ErrorResponse) o;
     return Objects.equals(this.statusCode, errorResponse.statusCode) &&
+      Objects.equals(this.title, errorResponse.title) &&
       Objects.equals(this.detail, errorResponse.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(statusCode, detail);
+    return Objects.hash(statusCode, title, detail);
   }
 
   @Override
@@ -82,6 +106,7 @@ public class ErrorResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorResponse {\n");
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();
