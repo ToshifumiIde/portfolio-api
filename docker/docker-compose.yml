@@ -44,9 +44,22 @@ services:
       - ./conf/redis.conf:/usr/local/etc/redis/redis.conf
     networks:
       - backend
-
+  localstack:
+    image: localstack/localstack
+    container_name: localstack
+    networks:
+      - backend
+    ports:
+      - 4566:4566
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      # カンマ区切りの指定サービスのみ使用可能
+      - SERVICES=s3,ses
+    volumes:
+      - localstack-volume:/var/lib/localstack
 networks:
   backend:
 volumes:
   portfolio-api-db:
   redis-volume:
+  localstack-volume:
