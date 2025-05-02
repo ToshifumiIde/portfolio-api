@@ -4,6 +4,10 @@ services:
     build:
       context: ../
       dockerfile: ./docker/Dockerfile
+    environment:
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      REDIRECT_URI: ${REDIRECT_URI}
     ports:
       - "3000:8080"
       - "5005:5005"
